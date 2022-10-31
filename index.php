@@ -113,8 +113,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
                     </div>
                     <div class="control-group">
                         <input type="password" class="form-control" id="pwd" placeholder="Şifrenizi giriniz" name="pwd" > <!--id="login-pass"-->
-                        <input type="checkbox" onclick="show()">Göster
-                        <i class="bi-eye-fill"></i>
+                        
                         
 </svg>
                         
