@@ -10,7 +10,7 @@ clone the project:
   cd TalepTakipSistemi 
 ```
 
-## Kullanılan Teknolojiler
+## Built with
 - PHP
 - JAVASCRİPT
 - AJAX
