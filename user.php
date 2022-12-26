@@ -4,11 +4,11 @@ require"user_menu.php";
 $host = "localhost";
 $port = "5432";
 $dbname = "signup";
-$user = "postgres";
-$password = "Zuhal1989."; 
+$user = "*****";
+$password = "*****"; 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
-$dbconn = pg_connect($connection_string); //pg ile bağlantı kuruldu
-//session_start();
+$dbconn = pg_connect($connection_string); 
+
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     $category= $_POST['material'];
@@ -43,7 +43,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     }
   
    
-   else{ //boş geçilmemişse
+   else{ 
                      
              $last_query=pg_query($dbconn,"SELECT max(id) from public.user");
              $last_id=pg_fetch_result($last_query,0,0);
@@ -51,8 +51,8 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
              $result = pg_query($dbconn, "SELECT * FROM public.user");
              for ( $i = 0; $i < $last_id; $i++) {
                 
-                $arr = pg_fetch_array ($result, $i); //mail adresini yaptım bunu tüm sütunlar için yapmalıyım.
-                $name=$arr[0]; //mail adresini bir değişkende tutuyoruz.
+                $arr = pg_fetch_array ($result, $i);
+                $name=$arr[0]; 
         
             }
            

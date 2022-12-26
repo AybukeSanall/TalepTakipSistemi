@@ -2,18 +2,18 @@
 $host = "localhost";
 $port = "5432";
 $dbname = "signup";
-$user = "postgres";
-$password = "Zuhal1989."; 
+$user = "*****";
+$password = "*****"; 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
 $dbconn = pg_connect($connection_string);
 session_start();
 
-//require"topmenu.php";
+
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
     
     $email= $_POST['email'];
     $pswd=$_POST['pwd'];
-   //boş geçilmez kontrolleri
+   
     if(!$email){
         echo "Lütfen email adresinizi giriniz.";
     }
@@ -56,7 +56,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
 
 
 
-                //burada sessionları tutman gerek.
+                
                 $_SESSION['role']=$role_us;
                 $_SESSION['department']= $department_us;
                 $_SESSION['email']=$email_us;
@@ -69,7 +69,7 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
                elseif($_SESSION['role']=="superAdmin"){
                 header('Location:superAdmin.php');
                }
-               elseif($_SESSION['role']=="user"){
+               elseif($_SESSION['role']=="user"){  
                 header('Location:user.php');
                }
             

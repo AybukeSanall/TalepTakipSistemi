@@ -2,10 +2,10 @@
 $host = "localhost";
 $port = "5432";
 $dbname = "signup";
-$user = "postgres";
-$password = "Zuhal1989."; 
+$user = "*****";
+$password = "*****"; 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
-$dbconn = pg_connect($connection_string); //pg ile bağlantı kuruldu
+$dbconn = pg_connect($connection_string); 
 session_start();
 require"topmenu.php";
 ?>
@@ -111,17 +111,13 @@ require"topmenu.php";
 
 						$count_id=pg_query("SELECT COUNT(*) FROM public.product WHERE person_name='".pg_escape_string($_SESSION['name'])."'");
 						$count_id_res=pg_fetch_result($count_id,0,0);
-						//echo (String)$different;
-						//echo (String)$count_id_res;
+						
 						
 
 							?>
 						
 							<form method="post">
-
-							
-
-							<?php //BU ADMİN KISMININ ÖNEMİ YOK ÇÜNKÜ ADMİN İSE admin.php'ye gidiyor
+							<?php 
 						if($_SESSION['role']=="admin"){
 						
 								for($i=0; $i <$last_id; $i++){
@@ -166,7 +162,7 @@ require"topmenu.php";
 							<td>$desc_u</td>
 							<td></td>";
 							if( (int)$arr2[6]==0){
-								//$deneme=(String) $arr2[5];
+								
 								$product_id=$arr2['product_id'];
 								
 								echo"

@@ -2,8 +2,8 @@
 $host = "localhost";
 $port = "5432";
 $dbname = "signup";
-$user = "postgres";
-$password = "Zuhal1989."; 
+$user = "*****";
+$password = "*****"; 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
 $dbconn = pg_connect($connection_string); //pg ile bağlantı kuruldu
 session_start();
