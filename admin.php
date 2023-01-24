@@ -28,6 +28,80 @@ require"topmenu.php";
 
 	</head>
 	<body>
+
+
+	<div class="modal fade" id="myModal">
+	<div class="modal-dialog open-sm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header ">
+				<h4>Header</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body ">
+				Talebi iade etmek istediğinizden emin misiniz? 
+				<form method="POST" action="#" id="cuser">
+					<input type="hidden" name="id">
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Hayır</button>
+				<button type="submit" id="yesbtn_iade" form="cuser" class="btn btn-info">Evet</button>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+
+<div class="modal fade" id="modalOnayla">
+	<div class="modal-dialog open-sm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header ">
+				<h4>Header</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body ">
+				Talebi onaylamak istediğinize emin misiniz?
+				<form method="POST" action="#" id="cuser">
+					<input type="hidden" name="id">
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Hayır</button>
+				<button type="submit" id="yesbtn_onayla" form="cuser" class="btn btn-info">Evet</button>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+<div class="modal fade" id="modalReddet">
+	<div class="modal-dialog open-sm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header ">
+				<h4>Header</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body ">
+				Talebi reddetmek istediğinize emin misiniz?
+				<form method="POST" action="#" id="cuser">
+					<input type="hidden" name="id">
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Hayır</button>
+				<button type="submit" id="yesbtn_reddet" form="cuser" class="btn btn-info">Evet</button>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -150,56 +224,92 @@ require"topmenu.php";
 
 	function onayla(gelenproductID)
 	{
-		
-		$.ajax({
-			url: 'deneme.php',
-			type: 'post',
-			data: {gonderimTipi:'Onaylama',productID:gelenproductID},
-			success: function(response){
+		const yesbtn_onayla = document.querySelector("#yesbtn_onayla");
+		var id = gelenproductID;
+		document.getElementById("cuser").id.value = id;
+		$("#modalOnayla").modal("show");
+		yesbtn_onayla.addEventListener("click", function() {
+			$.ajax({
+				url: 'deneme.php',
+				type: 'post',
+				data: {
+					gonderimTipi: 'Onaylama',
+					productID: gelenproductID
+				},
+				success: function(response) {
 
-				alert("Onaylama işlemi başarılı");
-				document.location.reload(true);
-				
+					console.log("başarılı");
+					document.location.reload(true);
 
-			}
+				}
+
+
 			});
-		
+		})
 	}
+	
+		
+		
+	
 	function reddet(gelenproductID)
 	{
+		const yesbtn = document.querySelector("#yesbtn_reddet");
+		var id = gelenproductID;
+		document.getElementById("cuser").id.value = id;
 		
+		$("#modalReddet").modal("show");
+			yesbtn.addEventListener("click", function() {
 		$.ajax({
 			url: 'deneme.php',
 			type: 'post',
-			data: {gonderimTipi:'Reddetme',productID:gelenproductID},
-			success: function(response){
+			data: {
+				gonderimTipi: 'Reddetme',
+				productID: gelenproductID
+			},
+			success: function(response) {
+				console.log("başarılı");
 
-				alert("Reddetme işlemi başarılı ");
 				document.location.reload(true);
-				
 
 			}
-			});
-		}
+			
+		});
+	})
+	
+	}
 	
 
 
 	function iade(gelenproductID)
 	{
-		if(confirm("Talebi iade etmek istediğinize emin misiniz?")==true){
+		const yesbtn = document.querySelector("#yesbtn_iade");
+		var id = gelenproductID;
+		document.getElementById("cuser").id.value = id;
+		$("#myModal").modal("show");
+			yesbtn.addEventListener("click", function() {
 		$.ajax({
 			url: 'deneme.php',
 			type: 'post',
-			data: {gonderimTipi:'Iade',productID:gelenproductID},
-			success: function(response){
+			data: {
+				gonderimTipi: 'Iade',
+				productID: gelenproductID
+			},
+			success: function(response) {
+				console.log("başarılı");
 
-				alert("İade işlemi başarılı");
 				document.location.reload(true);
-				
 
 			}
-			});
-		}
+			
+		});
+	})
+	
 	}
+
+	
+
+
+
+
 </script>
 
