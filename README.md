@@ -19,13 +19,6 @@ clone the project:
 - HTML,CSS
 
   
-## User credentials for testing
-#### User
-username: username@gmail.com              
-password: Password.
-####  Admin
-e-mail: admin@gmail.com              
-password: Zuhal1989.
 
 
 ## Example Images
