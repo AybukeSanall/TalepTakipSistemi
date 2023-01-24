@@ -9,7 +9,7 @@ $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} pa
 $dbconn = pg_connect($connection_string); //pg ile bağlantı kuruldu
 
 if(isset($_POST['submit'])&&!empty($_POST['submit'])){
-    
+    //burada alanların boş geçilip geçilmediğinin kontrolü
     $username= $_POST['name'];
     $email=$_POST['email'];
     $password=$_POST['pwd'];
@@ -152,7 +152,35 @@ if(isset($_POST['submit'])&&!empty($_POST['submit'])){
                         <input type="password"  name="pwd" class="login-field" placeholder="Şifrenizi Giriniz" id="login-pass">
                         <label for="login-pass" class="login-field-icon ful-user"></label>
                     </div>
-             
+                    <!-- <div class="control-group">
+                    <label for="roles">Rolünüzü seçiniz</label><br><br>
+                    <select name="role" id="role">
+                        <option value="admin">Admin</option>
+                        <option value="superAdmin">Süper Admin</option>
+                        <option value="user">Kullanıcı</option>
+                    </select> 
+
+                    </div>
+                    <div class="control-group"> 
+                        
+    <label for="country">Birim</label> <br>
+        <select id="birim" name="department">
+        <option value="Satın Alma D.B">Satın Alma Daire Başkanlığı</option>
+        <option value="Bilgi İşlem D.B">Bilgi İşlem Daire Başkanlığı</option>
+        <option value="Din Hizmetleri D.B">Din Hizmetleri Genel Müdürlüğü</option>
+        <option value="Eğitim Hizmetleri G.M">Eğitim Hizmetleri Genel Müdürlüğü</option>
+        <option value="Hac ve Umre G.M">Hac ve Umre Hizmetleri Genel Müdürlüğü</option>
+        <option value="Dini Yayınlar G.M">Dini Yayınlar Genel Müdürlüğü</option>
+        <option value="Dış İlişkiler G.M">Dış İlişkiler Genel Müdürlüğü</option>
+        <option value="İnsan Kaynakları G.M">İnsan Kaynakları Genel Müdürlüğü</option>
+        <option value="Yönetim Hizmetleri G.M">Yönetim Hizmetleri Genel Müdürlüğü</option>
+        <option value="Rehberlik ve Teftiş G.M">Rehberlik ve Teftiş Başkanlığı</option>
+        <option value="Strateji Geliştirme">Strateji Geliştirme Başkanlığı</option>
+        <option value="İç Denetim ">İç Denetim Birimi Başkanlığı</option>
+        <option value="Hukuk Müşavirliği">Hukuk Müşavirliği</option>
+
+    </select>
+                    </div>-->
                     <input type="submit" name="submit" class="btn btn-primary btn-large btn-block" value="Kayıt Ol">
                    
                 </div>

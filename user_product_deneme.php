@@ -3,9 +3,9 @@ $host = "localhost";
 $port = "5432";
 $dbname = "signup";
 $user = "*****";
-$password = "*****"; 
+$password = "*****";
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
-$dbconn = pg_connect($connection_string); 
+$dbconn = pg_connect($connection_string); //pg ile bağlantı kuruldu
 session_start();
 require "topmenu.php";
 
@@ -13,6 +13,29 @@ require "topmenu.php";
 
 
 <div class="modal fade" id="myModal">
+	<div class="modal-dialog open-sm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header ">
+				<h4>Header</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button> 
+			</div>
+			<div class="modal-body ">
+				Talebi iletmek istediğinize emin misiniz?
+				<form method="POST" action="#" id="cuser">
+					<input type="hidden" name="id">
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Hayır</button>
+				<button type="submit" form="cuser" class="btn btn-info">Evet</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalSilme">
 	<div class="modal-dialog open-sm modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header ">
@@ -28,39 +51,12 @@ require "topmenu.php";
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Hayır</button>
-				<button type="submit" id="yesbtn" form="cuser" class="btn btn-info">Evet</button>
+				<button type="submit" form="cuser" class="btn btn-info">Evet</button>
 			</div>
 
 		</div>
 	</div>
-
 </div>
-
-
-<div class="modal fade" id="modalSilme">
-	<div class="modal-dialog open-sm modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header ">
-				<h4>Header</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<div class="modal-body ">
-				Talebi silmek istediğinize emin misiniz?
-				<form method="POST" action="#" id="cuser">
-					<input type="hidden" name="id">
-				</form>
-			</div>
-
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Hayır</button>
-				<button type="submit" id="yesbtn2" form="cuser" class="btn btn-info">Evet</button>
-			</div>
-
-		</div>
-	</div>
-
-</div>
-
 
 
 <!Doctype html>
@@ -206,7 +202,7 @@ require "topmenu.php";
 							<td><a href='#' onclick='silme($product_id)' id='$product_id' class='btn btn-danger' data-toggle='modal' data-target='#myModal'>Sil</a></td>
 							<td><button type='button' onclick='iletme($product_id)'  class='btn btn-primary'>
 							İletme
-						</button></td>
+						</button>
 					
 							<td></td>";
 												// 
@@ -247,43 +243,28 @@ require "topmenu.php";
 </html>
 <script>
 	function iletme(gelenproductID) {
-	
-		const yesbtn = document.querySelector("#yesbtn");
-		console.log(gelenproductID);
+
+				$.ajax({
+				url: 'deneme.php',
+				type: 'post',
+				data: {gonderimTipi:'Iletme',productID: gelenproductID},
+				success: function(response){
+
+				alert("İletme işlemi başarılı");
+				document.location.reload(true);
+
+			}
+			});
+		
 		var id = gelenproductID;
 		document.getElementById("cuser").id.value = id;
 		$("#myModal").modal("show");
-		yesbtn.addEventListener("click", function() {
-			$.ajax({
-				url: 'deneme.php',
-				type: 'post',
-				data: {
-					gonderimTipi: 'Iletme',
-					productID: gelenproductID
-				},
-				success: function(response) {
-					console.log("başarılı");
-
-					document.location.reload(true);
-
-				}
-				
-			});
-		})
-		
-
-
 
 	}
 
 
 	function silme(gelenproductID) {
-		
-		const yesbtn2 = document.querySelector("#yesbtn2");
-		var id = gelenproductID;
-		document.getElementById("cuser").id.value = id;
-		$("#modalSilme").modal("show");
-		yesbtn2.addEventListener("click", function() {
+
 			$.ajax({
 				url: 'deneme.php',
 				type: 'post',
@@ -293,14 +274,14 @@ require "topmenu.php";
 				},
 				success: function(response) {
 
-					
+					alert("Silme işlemi başarılı");
 					document.location.reload(true);
 
 				}
-
-
 			});
-		})
+			var id = gelenproductID;
+			document.getElementById("cuser").id.value = id;
+			$("#modalSilme").modal("show");
+		
 	}
-	
 </script>

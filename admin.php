@@ -5,7 +5,7 @@ $dbname = "signup";
 $user = "*****";
 $password = "*****"; 
 $connection_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} ";
-$dbconn = pg_connect($connection_string); //pg ile bağlantı kuruldu
+$dbconn = pg_connect($connection_string); 
 
 session_start();
 
